@@ -153,11 +153,11 @@ def _extract_supplier_names(text: str) -> List[str]:
 
 
 def _collect_tool_entities(messages: Sequence[Any]) -> Dict[str, List[str]]:
-    """从工具调用参数里收集实体（供应商、零部件），比正则稳。
+    """从工具调用参数里收集实体（供应商、研发物料/设备），比正则稳。
 
     判定规则（按优先级）：
     1. 工具名含 supplier / 参数名含 supplier → 供应商
-    2. 工具名含 part / 参数名含 part → 零部件
+    2. 工具名含 part / 参数名含 part → 研发物料/设备（底层字段沿用 ERP 命名）
     两者都命不上时忽略（比如 order_page 的 status 参数不是实体名）。
     """
     suppliers: List[str] = []

@@ -1,0 +1,82 @@
+:root {
+  --color-paper: oklch(99.2% 0.006 255);
+  --color-paper-2: oklch(97.8% 0.012 255);
+  --color-paper-3: oklch(95.5% 0.02 255);
+  --color-white: oklch(100% 0 0);
+  --color-ink: oklch(25% 0.022 255);
+  --color-ink-2: oklch(43% 0.025 255);
+  --color-muted: oklch(55% 0.022 255);
+  --color-rule: oklch(90% 0.014 255);
+  --color-accent: oklch(54% 0.2 257);
+  --color-accent-hover: oklch(48% 0.2 257);
+  --color-accent-soft: oklch(96% 0.03 257);
+  --color-accent-mid: oklch(91% 0.06 257);
+  --color-accent-ink: oklch(100% 0 0);
+  --color-focus: oklch(61% 0.18 257);
+  --color-success: oklch(49% 0.14 151);
+  --color-success-soft: oklch(95% 0.035 151);
+  --color-warning: oklch(51% 0.12 72);
+  --color-warning-soft: oklch(96% 0.04 82);
+  --color-danger: oklch(53% 0.18 28);
+  --color-danger-soft: oklch(96% 0.03 28);
+  --color-code-surface: oklch(28% 0.025 255);
+  --color-neutral-300: oklch(84% 0.016 255);
+  --color-neutral-400: oklch(67% 0.02 255);
+  --color-neutral-700: oklch(34% 0.024 255);
+  --color-neutral-800: oklch(29% 0.024 255);
+  --color-accent-200: oklch(84% 0.09 257);
+  --color-accent-300: oklch(73% 0.14 257);
+  --color-accent-800: oklch(39% 0.16 257);
+  --color-accent-900: oklch(31% 0.11 257);
+  --color-success-100: oklch(91% 0.06 151);
+  --color-success-400: oklch(64% 0.14 151);
+  --color-success-700: oklch(41% 0.14 151);
+  --color-warning-100: oklch(91% 0.06 82);
+  --color-warning-200: oklch(84% 0.09 82);
+  --color-warning-400: oklch(68% 0.13 72);
+  --color-warning-700: oklch(43% 0.12 72);
+  --color-warning-800: oklch(36% 0.09 72);
+  --color-danger-100: oklch(91% 0.06 28);
+  --color-danger-200: oklch(85% 0.09 28);
+  --color-danger-400: oklch(67% 0.15 28);
+  --color-danger-700: oklch(43% 0.17 28);
+
+  --font-display: var(--font-geist-sans), "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: var(--font-geist-sans), "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-outlier: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-display: clamp(1.75rem, 2.4vw, 2.25rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-short: 160ms;
+  --dur-medium: 220ms;
+
+  --radius-control: 0.625rem;
+  --radius-card: 0.875rem;
+  --radius-panel: 1rem;
+  --radius-pill: 999px;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-toast: 500;
+}

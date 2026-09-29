@@ -19,10 +19,12 @@ export default function ToolCallDisplay({ toolCall }: Props) {
     );
 
   return (
-    <div className="my-1.5 border border-gray-200 rounded-lg overflow-hidden text-xs">
+    <div className="my-2 overflow-hidden rounded-lg border border-gray-200 text-xs">
       <button
+        type="button"
+        aria-expanded={expanded}
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 transition-colors"
+        className="flex min-h-11 w-full items-center gap-2 bg-gray-50 px-3 transition-colors hover:bg-gray-100"
       >
         {expanded ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
         <Wrench size={13} className="text-gray-500" />

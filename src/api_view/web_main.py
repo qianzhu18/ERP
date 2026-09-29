@@ -70,7 +70,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="DeepAgent 智能采购助手",
-    description="基于 Harness Engineering 架构的摩托车零部件采购智能助手 API",
+    description="基于 Harness Engineering 架构的 AI 硬件研发采购智能助手 API",
     version="1.0.0",
     lifespan=lifespan,
 )

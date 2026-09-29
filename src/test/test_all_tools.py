@@ -34,7 +34,7 @@ async def test_web_search():
     from agent.tools.web_search import web_search
 
     result = await web_search.ainvoke({
-        "query": "摩托车零部件采购管理"
+        "query": "机器人研发物料采购管理"
     })
     print(f"    结果: {str(result)[:200]}")
     print("    ✓ web_search 正常\n")

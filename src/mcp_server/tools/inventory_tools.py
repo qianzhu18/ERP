@@ -12,10 +12,10 @@ def register_inventory_tools(mcp: FastMCP):
 
     @mcp.tool()
     async def inventory_warning() -> str:
-        """获取库存预警列表，返回当前库存量低于安全库存的所有零部件。
+        """获取库存预警列表，返回当前库存量低于安全库存的研发物料/设备。
 
         Returns:
-            库存预警列表JSON，每条包含库存信息和零部件详情（名称、编码、分类等）
+            库存预警列表JSON，每条包含库存信息和物料/设备详情（名称、编码、分类等）
         """
         result = await erp_client.get("/api/inventory/warning")
         return json.dumps(result, ensure_ascii=False, indent=2)
@@ -32,7 +32,7 @@ def register_inventory_tools(mcp: FastMCP):
         Args:
             current: 当前页码，默认1
             size: 每页大小，默认10
-            part_name: 零件名称（可选，模糊匹配）
+            part_name: 研发物料/设备名称（可选，模糊匹配；ERP 查询参数沿用 partName）
             warehouse_location: 仓库位置（可选）
 
         Returns:
@@ -66,7 +66,7 @@ def register_inventory_tools(mcp: FastMCP):
         """执行入库操作。
 
         Args:
-            part_id: 零件ID（必填）.
+            part_id: 研发物料/设备ID（必填；ERP 字段沿用 partId）.
             quantity: 入库数量（必填，>0）
             warehouse_location: 仓库位置（可选）
 
@@ -86,7 +86,7 @@ def register_inventory_tools(mcp: FastMCP):
         """执行出库操作。
 
         Args:
-            part_id: 零件ID（必填）
+            part_id: 研发物料/设备ID（必填；ERP 字段沿用 partId）
             quantity: 出库数量（必填，>0）
 
         Returns:

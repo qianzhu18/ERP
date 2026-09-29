@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Menu } from "lucide-react";
 import { ChatMessage, InterruptData, TodoItem } from "@/lib/types";
 import MessageList from "./MessageList";
 import WelcomeScreen from "./WelcomeScreen";
@@ -26,6 +27,7 @@ interface Props {
   onSupplement: (text: string) => void;
   onApprove: () => void;
   onReject: () => void;
+  onOpenSidebar: () => void;
 }
 
 export default function ChatArea({
@@ -43,21 +45,30 @@ export default function ChatArea({
   onSupplement,
   onApprove,
   onReject,
+  onOpenSidebar,
 }: Props) {
   const [showToolCalls, setShowToolCalls] = useState(true);
   const hasMessages = messages.length > 0;
 
   return (
-    <main className="flex-1 flex flex-col h-screen bg-gray-50/50 min-w-0">
-      {/* 顶部工具栏 */}
-      {hasMessages && (
-        <div className="flex items-center justify-between px-6 py-2 border-b border-gray-100 bg-white/80 backdrop-blur-sm">
-          <span className="text-xs text-gray-400">DeepAgent 智能助手</span>
-          <div className="flex items-center gap-2">
-            <ToolCallToggle show={showToolCalls} onToggle={setShowToolCalls} />
+    <main className="flex min-h-0 min-w-0 flex-1 flex-col bg-background">
+      <div className="workbench-toolbar flex items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3">
+          <button
+            type="button"
+            aria-label="打开导航"
+            onClick={onOpenSidebar}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 md:hidden"
+          >
+            <Menu size={19} />
+          </button>
+          <div className="min-w-0">
+            <span className="block truncate text-sm font-semibold text-gray-900">采购工作台</span>
+            <span className="hidden text-xs text-gray-500 sm:block">智能采购助手</span>
           </div>
         </div>
-      )}
+        {hasMessages && <ToolCallToggle show={showToolCalls} onToggle={setShowToolCalls} />}
+      </div>
 
       {/* TODO 任务列表 - 最顶层悬浮（在 main 层级，不被任何父级影响） */}
       <TodoListPanel items={todoItems} visible={todoVisible} />

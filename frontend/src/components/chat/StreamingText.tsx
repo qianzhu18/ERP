@@ -65,10 +65,10 @@ export default function StreamingText({ text, speed = 2 }: Props) {
   // 等待状态（还没有任何文字）
   if (!text) {
     return (
-      <div className="flex items-center gap-1.5 py-1">
-        <span className="typing-dot w-2 h-2 bg-blue-500 rounded-full inline-block animate-bounce [animation-delay:0ms]" />
-        <span className="typing-dot w-2 h-2 bg-blue-500 rounded-full inline-block animate-bounce [animation-delay:150ms]" />
-        <span className="typing-dot w-2 h-2 bg-blue-500 rounded-full inline-block animate-bounce [animation-delay:300ms]" />
+      <div className="flex items-center gap-2 py-1">
+        <span className="typing-dot inline-block h-2 w-2 rounded-full bg-blue-500 [animation-delay:0ms]" />
+        <span className="typing-dot inline-block h-2 w-2 rounded-full bg-blue-500 [animation-delay:150ms]" />
+        <span className="typing-dot inline-block h-2 w-2 rounded-full bg-blue-500 [animation-delay:300ms]" />
       </div>
     );
   }
@@ -81,7 +81,7 @@ export default function StreamingText({ text, speed = 2 }: Props) {
       {displayedText}
       {/* 打字光标 */}
       {!isComplete && (
-        <span className="inline-block w-[2px] h-[1em] bg-blue-500 ml-0.5 align-middle animate-pulse" />
+        <span className="inline-block w-[2px] h-[1em] bg-blue-500 ml-0.5 align-middle animate-pulse" aria-hidden="true" />
       )}
     </span>
   );

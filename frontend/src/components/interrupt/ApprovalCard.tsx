@@ -36,10 +36,10 @@ export default function ApprovalCard({ data, onApprove, onReject }: Props) {
               <tbody>
                 {Object.entries(orderData).map(([key, value]) => (
                   <tr key={key} className="border-b border-blue-50 last:border-0">
-                    <td className="py-1.5 pr-3 text-gray-500 font-medium whitespace-nowrap">
+                    <td className="whitespace-nowrap py-2 pr-3 font-medium text-gray-500">
                       {key}
                     </td>
-                    <td className="py-1.5 text-gray-800">
+                    <td className="break-words py-2 text-gray-800">
                       {typeof value === "object"
                         ? JSON.stringify(value)
                         : String(value)}
@@ -52,17 +52,19 @@ export default function ApprovalCard({ data, onApprove, onReject }: Props) {
         )}
 
         {/* 审批按钮 */}
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <button
+            type="button"
             onClick={onApprove}
-            className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
+            className="flex min-h-11 items-center gap-2 rounded-lg bg-green-600 px-4 text-sm font-medium text-white transition-colors hover:bg-green-700 active:translate-y-px"
           >
             <Check size={14} />
             批准执行
           </button>
           <button
+            type="button"
             onClick={onReject}
-            className="flex items-center gap-1.5 px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-lg transition-colors"
+            className="flex min-h-11 items-center gap-2 rounded-lg bg-red-500 px-4 text-sm font-medium text-white transition-colors hover:bg-red-600 active:translate-y-px"
           >
             <X size={14} />
             拒绝

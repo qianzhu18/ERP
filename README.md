@@ -1,20 +1,28 @@
-# ERP 智能采购助手 — Harness Engineering 架构
+# AI 硬件研发采购助手 — Harness Engineering 架构
 
-> 基于 DeepAgent + LangGraph + MCP 协议的摩托车零部件采购智能助手，严格遵循 **Harness Engineering** 架构思想（Planning → Executing → Review → Result）。
+> 基于 DeepAgent + LangGraph + MCP 协议的 AI 硬件研发采购助手，以具身智能与机器人研发物料采购为演示场景，严格遵循 **Harness Engineering** 架构思想（Planning → Executing → Review → Result）。
 
 ---
 
 ## 项目简介
 
-本项目是一个面向摩托车零部件采购管理场景的 **AI Agent 系统**。通过 DeepSeek 模型驱动的智能体，与已部署的 Java ERP 后端进行交互，实现：
+本项目是一个面向 AI 硬件研发团队采购协同场景的 **AI Agent 系统**。演示数据采用机器人研发常见的运动控制、感知和边缘计算设备；智能体通过 MCP 与 Java ERP 后端交互，实现：
 
 - 供应商智能分析（信用评级、供货能力对比）
 - 采购订单全生命周期管理（创建/修改/审批）
 - 库存预警与出入库管理
-- 零部件搜索与供应商关联查询
+- 研发物料与设备搜索、供应商关联查询
 - 数据可视化图表生成（26 种图表类型）
 - 结构化文档输出（Markdown/HTML/CSV/JSON）
 - 人工审批流程（HITL — Human-in-the-Loop）
+
+### 演示业务边界
+
+- **业务角色**：研发人员发起设备/物料采购与库存查询，采购人员分析供应商和订单，负责人审批写操作，仓储人员登记入库/出库。
+- **演示目录**：关节执行器模组、深度相机与 3D 激光雷达套件、边缘计算模块。目录、供应商与报价均为虚构样例；物料类别参考公开机器人产品配置，不代表任何厂商的真实采购清单。
+- **当前覆盖**：供应商查询与分析、物料/设备目录、采购订单创建/修改与审批、库存查询/预警/出入库、采购分析。
+- **当前不覆盖**：机器人产品 BOM 版本管理、研发项目预算分摊、来料质检、序列号追溯。机器人研发的 BOM 和工程变更会影响采购与库存，但当前 ERP 工具接口没有这些业务对象。
+- **接口兼容**：为兼容现有 Java ERP，MCP 工具名仍使用 `part_*`，底层字段与路径仍采用 `partId`、`/api/parts`；面向用户的业务称呼统一为“研发物料/设备”。
 
 ---
 
@@ -220,7 +228,7 @@ python -m unittest src.test.test_hybrid_review -v
 | 12 | ToolCallLimitMiddleware | 工具调用次数限制 |
 
 ### 7. 默认 35 个显式注册工具
-- **23 个 MCP 工具**：供应商(5) + 零部件(5) + 订单(7) + 库存(6)
+- **23 个 MCP 工具**：供应商(5) + 研发物料/设备(5) + 订单(7) + 库存(6)
 - **10 个自定义工具**：chart_generator, web_search, web_fetch, install_skill, list_user_skills, request_order_info, download_sandbox_file, list_sandbox_files, generate_document, generate_table_report
 - **2 个记忆工具**：read_memory、remember；`MEMORY_TOOLS_ENABLED=false` 时不注册。
 
@@ -351,7 +359,7 @@ ERP-AGENT/
 ### 环境要求
 
 - Python 3.11+
-- Node.js 18+
+- Node.js 20.9+（Next.js 16 的最低版本要求）
 - MongoDB 6.0+
 - Docker Desktop（已启动）
 - DeepSeek API Key（对话、grader、联网搜索共用）

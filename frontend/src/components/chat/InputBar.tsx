@@ -38,27 +38,30 @@ export default function InputBar({ onSend, disabled, queued = 0 }: Props) {
   };
 
   return (
-    <div className="px-6 pb-4 pt-2">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-end gap-2 bg-white border border-gray-200 rounded-xl px-4 py-3 shadow-sm focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-500/10 transition-all">
+    <div className="px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-2 sm:px-6">
+      <div className="mx-auto max-w-4xl">
+        <div className="composer-shell flex items-end gap-2 rounded-[var(--radius-panel)] border border-gray-200 bg-white px-3 py-3 shadow-sm transition-[border-color,box-shadow] duration-200 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-500/15 sm:px-4">
           <textarea
             ref={textareaRef}
+            aria-label="输入采购任务"
             value={input}
             onChange={handleInput}
             onKeyDown={handleKeyDown}
             placeholder={disabled ? "AI 正在回答，输入后会自动排队..." : "输入消息，Enter 发送..."}
             rows={1}
-            className="flex-1 resize-none outline-none text-sm text-gray-800 placeholder-gray-400 max-h-[120px]"
+            className="min-h-11 max-h-[120px] min-w-0 flex-1 resize-none bg-transparent text-sm leading-6 text-gray-800 outline-2 outline-transparent placeholder:text-gray-500 focus-visible:outline-focus focus-visible:outline-offset-1"
           />
           {queued > 0 && (
-            <span className="shrink-0 text-[10px] text-orange-500 bg-orange-50 px-1.5 py-0.5 rounded-full whitespace-nowrap">
+            <span className="shrink-0 whitespace-nowrap rounded-full bg-amber-50 px-2 py-0.5 text-xs text-amber-700">
               {queued} 条排队
             </span>
           )}
           <button
+            type="button"
+            aria-label="发送消息"
             onClick={handleSend}
-            disabled={!input.trim()}
-            className="shrink-0 p-2 bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-gray-300 text-white rounded-lg transition-colors"
+            disabled={!input.trim() || disabled}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-[var(--radius-control)] bg-primary text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-600"
           >
             <Send size={16} />
           </button>

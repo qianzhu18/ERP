@@ -18,7 +18,7 @@ from src.mcp_server.tools.inventory_tools import register_inventory_tools
 # 创建 MCP Server 实例
 mcp = FastMCP(
     name="ERP-Procurement-MCP",
-    instructions="摩托车零部件采购管理系统 MCP 网关，提供供应商、零部件、订单、库存查询和管理能力。",
+    instructions="AI 硬件研发采购管理系统 MCP 网关，提供供应商、研发物料与设备、订单、库存查询和管理能力。底层 part_* 工具名及 ERP /api/parts 字段为既有接口契约。",
 )
 
 # 注册所有工具

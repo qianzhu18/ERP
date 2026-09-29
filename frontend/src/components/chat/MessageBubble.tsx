@@ -24,15 +24,15 @@ export default function MessageBubble({
       className={`flex gap-3 animate-fade-in ${isUser ? "justify-end" : "justify-start"}`}
     >
       {!isUser && (
-        <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
+        <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100">
           <Bot size={16} className="text-blue-600" />
         </div>
       )}
 
       <div
-        className={`max-w-[75%] rounded-2xl px-4 py-3 ${
+        className={`min-w-0 max-w-[88%] rounded-2xl px-4 py-3 sm:max-w-[75%] ${
           isUser
-            ? "bg-[#2563EB] text-white rounded-br-md"
+            ? "rounded-br-md bg-primary text-white"
             : "bg-white border border-gray-200 text-gray-800 rounded-bl-md shadow-sm"
         }`}
       >
@@ -47,7 +47,7 @@ export default function MessageBubble({
 
         {/* 消息内容 */}
         {isUser ? (
-          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+          <p className="break-words whitespace-pre-wrap text-sm">{message.content}</p>
         ) : isStreaming && !message.content ? (
           <StreamingText text="" />
         ) : isStreaming ? (
@@ -62,7 +62,7 @@ export default function MessageBubble({
 
         {/* 来源标识 */}
         {!isUser && message.source && message.source !== "main" && (
-          <div className="mt-2 pt-1.5 border-t border-gray-100">
+          <div className="mt-2 border-t border-gray-100 pt-2">
             <span className="text-[10px] text-gray-400">
               来自: {message.source === "analyst" ? "采购分析专家" : "采购订单专家"}
             </span>

@@ -139,7 +139,6 @@ export interface ResumeRequest {
 
 // ===== 功能卡片 =====
 export interface CapabilityCard {
-  icon: string;
   title: string;
   description: string;
   prompt: string;

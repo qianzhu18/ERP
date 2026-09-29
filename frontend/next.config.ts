@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Keep Turbopack scoped to this app when the parent directory has another lockfile.
+  turbopack: {
+    root: process.cwd(),
+  },
   async rewrites() {
     return [
       {

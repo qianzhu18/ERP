@@ -49,11 +49,11 @@ generate_chart(
 
 | 采购分析场景 | 推荐图表 | 参数示例 |
 |------------|---------|---------|
-| 供应商价格对比 | bar_grouped | x_field="supplier", y_field="price", series_field="part" |
+| 研发物料/设备供应商价格对比 | bar_grouped | x_field="supplier", y_field="price", series_field="item" |
 | 月度采购趋势 | line | x_field="month", y_field="amount" |
 | 库存预警 | bar_horizontal | x_field="part_name", y_field="stock" |
 | 供应商信用分布 | pie | x_field="rating", y_field="count" |
-| 零部件类别占比 | donut | x_field="category", y_field="count" |
+| 研发物料/设备类别占比 | donut | x_field="category", y_field="count" |
 | 供应商综合评估 | radar | x_field="dimension", y_field="score", series_field="supplier" |
 | 采购金额组成 | treemap | x_field="category", y_field="amount" |
 
@@ -61,9 +61,9 @@ generate_chart(
 
 ```json
 [
-  {"supplier": "华胜机械", "price": 25.5, "part": "火花塞"},
-  {"supplier": "恒达配件", "price": 28.0, "part": "火花塞"},
-  {"supplier": "华胜机械", "price": 150.0, "part": "刹车片"}
+  {"supplier": "启衡运动控制（示例）", "price": 4200.0, "item": "关节执行器模组"},
+  {"supplier": "启衡运动控制（示例）", "price": 4500.0, "item": "关节执行器模组"},
+  {"supplier": "灵瞳传感技术（示例）", "price": 6800.0, "item": "深度相机与3D激光雷达套件"}
 ]
 ```
 

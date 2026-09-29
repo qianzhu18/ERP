@@ -35,7 +35,7 @@ export default function SupplementForm({ data, onSubmit }: Props) {
         {data.missing_fields && data.missing_fields.length > 0 && (
           <div className="mb-3">
             <span className="text-xs text-amber-600 font-medium">缺少字段: </span>
-            <div className="flex flex-wrap gap-1.5 mt-1">
+            <div className="mt-1 flex flex-wrap gap-2">
               {data.missing_fields.map((f) => (
                 <span
                   key={f}
@@ -51,7 +51,7 @@ export default function SupplementForm({ data, onSubmit }: Props) {
         {data.extracted_data && Object.keys(data.extracted_data).length > 0 && (
           <div className="mb-3 p-2 bg-white/60 rounded-lg">
             <span className="text-[11px] text-amber-600 font-medium">已提取数据:</span>
-            <pre className="text-[11px] text-gray-600 mt-1 whitespace-pre-wrap">
+            <pre className="mt-1 whitespace-pre-wrap break-words text-xs text-gray-600">
               {JSON.stringify(data.extracted_data, null, 2)}
             </pre>
           </div>
@@ -60,16 +60,19 @@ export default function SupplementForm({ data, onSubmit }: Props) {
         <div className="flex gap-2">
           <input
             type="text"
+            aria-label="补充订单信息"
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-            placeholder="输入补充信息，如：零部件ID为P001，数量100，单价25.5"
-            className="flex-1 px-3 py-2 text-sm border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400/30 bg-white"
+            placeholder="输入补充信息，如：物料/设备ID为P001，数量2，单价4200"
+            className="min-h-11 min-w-0 flex-1 rounded-lg border border-amber-200 bg-white px-3 py-2 text-sm outline-2 outline-transparent focus-visible:outline-focus focus-visible:outline-offset-1"
           />
           <button
+            type="button"
+            aria-label="提交补充信息"
             onClick={handleSubmit}
             disabled={!text.trim()}
-            className="px-3 py-2 bg-amber-600 hover:bg-amber-700 disabled:bg-gray-300 text-white text-sm rounded-lg transition-colors"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-amber-600 text-white transition-colors hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-600"
           >
             <Send size={14} />
           </button>

@@ -28,7 +28,7 @@ export default function TodoListPanel({ items, visible }: Props) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-14 right-4 z-[9999] flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors text-xs text-gray-600 animate-fade-in"
+        className="fixed right-4 top-14 z-[var(--z-dropdown)] flex min-h-11 items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-600 shadow-sm transition-colors hover:bg-gray-50 animate-fade-in"
       >
         <ListTodo size={14} className="text-blue-600" />
         <span>{completedCount}/{items.length}</span>
@@ -37,8 +37,8 @@ export default function TodoListPanel({ items, visible }: Props) {
   }
 
   return (
-    <div className="fixed top-14 right-4 w-72 z-[9999] rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden animate-fade-in">
-      <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50/80 border-b border-gray-100">
+    <div className="fixed right-4 top-14 z-[var(--z-dropdown)] w-72 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg animate-fade-in">
+      <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/80 px-4 py-3">
         <div className="flex items-center gap-2">
           <ListTodo size={14} className="text-blue-600" />
           <span className="text-xs font-medium text-gray-700">任务规划</span>
@@ -49,7 +49,7 @@ export default function TodoListPanel({ items, visible }: Props) {
           </span>
           <button
             onClick={() => setOpen(false)}
-            className="p-0.5 hover:bg-gray-200 rounded transition-colors"
+            className="grid h-11 w-11 place-items-center rounded-lg transition-colors hover:bg-gray-200"
             title="收起"
           >
             <X size={14} className="text-gray-400" />
@@ -59,17 +59,17 @@ export default function TodoListPanel({ items, visible }: Props) {
 
       <div className="h-1 bg-gray-100">
         <div
-          className="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-500 ease-out"
-          style={{ width: `${progress}%` }}
+          className="h-full origin-left bg-blue-500 transition-transform duration-300 ease-[var(--ease-out)]"
+          style={{ transform: `scaleX(${progress / 100})` }}
         />
       </div>
 
-      <div className="px-4 py-2 space-y-1.5 max-h-60 overflow-y-auto">
+      <div className="max-h-60 space-y-2 overflow-y-auto px-4 py-2">
         {items.map((item) => {
           const config = STATUS_CONFIG[item.status] || STATUS_CONFIG.pending;
           const Icon = config.icon;
           return (
-            <div key={item.id} className="flex items-center gap-2.5 py-0.5">
+            <div key={item.id} className="flex items-center gap-3 py-0.5">
               <Icon
                 size={14}
                 className={`${config.color} shrink-0 ${
@@ -77,7 +77,7 @@ export default function TodoListPanel({ items, visible }: Props) {
                 }`}
               />
               <span
-                className={`text-xs leading-relaxed ${
+                className={`break-words text-sm leading-relaxed ${
                   item.status === "complete"
                     ? "text-gray-400 line-through"
                     : item.status === "in_progress"

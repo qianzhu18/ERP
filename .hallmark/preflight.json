@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-29",
+  "framework": "Next.js 16.2.12 with React 19 and Tailwind CSS 4",
+  "font_stack_before": "System sans stack; no explicit display/body pairing",
+  "palette_before": "CSS variables in frontend/src/app/globals.css; blue primary and neutral surfaces",
+  "motion_before": "CSS transitions and keyframes; no motion package",
+  "spacing_before": "No named spacing scale",
+  "design_system_before": "No design.md, tokens.css, or .hallmark/log.json",
+  "preserve": [
+    "Existing chat, history, approval, and streaming behavior",
+    "Next.js App Router and Tailwind CSS entry point",
+    "Existing route and component ownership"
+  ],
+  "introduce": [
+    "Feishu-inspired enterprise blue token set",
+    "Geist display/body typography with Geist Mono for code",
+    "Four-point semantic spacing scale",
+    "Responsive mobile navigation drawer and task grid"
+  ]
+}

@@ -528,16 +528,16 @@ def test_migration_not_blocked_by_unrelated_semantic():
 def test_part_args_do_not_leak_into_suppliers():
     """回归：part_search 的参数不应混进 recent_suppliers。"""
     messages = [
-        Msg("human", "查一下恒力机械有没有刹车片"),
+        Msg("human", "查一下启衡运动控制有没有关节执行器模组"),
         Msg("ai", "", tool_calls=[
-            {"name": "part_search", "args": {"keyword": "刹车片"}},
+            {"name": "part_search", "args": {"keyword": "关节执行器模组"}},
             {"name": "supplier_query", "args": {"name": "恒力机械"}},
         ]),
     ]
     updates = extract_preferences(messages)
     suppliers = updates.get("recent_suppliers", [])
     assert "恒力机械" in suppliers, updates
-    assert "刹车片" not in suppliers, updates
+    assert "关节执行器模组" not in suppliers, updates
 
 
 @test

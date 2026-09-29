@@ -17,10 +17,11 @@ export default function SearchBox({ value, onChange }: Props) {
         />
         <input
           type="text"
+          aria-label="搜索对话"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="搜索对话..."
-          className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors"
+          className="min-h-11 w-full rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-3 text-sm outline-2 outline-transparent transition-[border-color,background-color] focus:border-blue-400 focus-visible:outline-focus focus-visible:outline-offset-1"
         />
       </div>
     </div>

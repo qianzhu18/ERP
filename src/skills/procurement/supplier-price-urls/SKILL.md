@@ -10,18 +10,17 @@ version: 1.0.0
 ## 概述
 记录各主要供应商的在线报价系统URL，用于价格比对和市场竞争分析。
 
-## URL映射表
+## URL映射表（演示占位地址）
 
 | 供应商 | 报价系统URL | 备注 |
 |--------|------------|------|
-| 华胜机械制造 | https://example.com/huasheng/quote | 摩托车发动机配件 |
-| 恒达配件 | https://example.com/hengda/price | 制动系统配件 |
-| 金轮零部件 | https://example.com/jinlun/catalog | 传动系统配件 |
-| 远航橡塑 | https://example.com/yuanhang/quote | 密封件/橡胶件 |
-| 中信摩配 | https://example.com/zhongxin/price | 电气系统配件 |
+| 启衡运动控制（示例） | https://example.com/qiheng/quote | 关节执行器与伺服驱动 |
+| 灵瞳传感技术（示例） | https://example.com/lingtong/price | 深度相机与激光雷达 |
+| 云枢边缘计算（示例） | https://example.com/yunshu/catalog | 边缘计算模块 |
+| 维拓能源设备（示例） | https://example.com/weitou/quote | 机器人电池与电源模块 |
 
 ## 使用场景
-1. 当用户要求对比某零部件的市场价格时
+1. 当用户要求对比某研发物料/设备的市场价格时
 2. 需要验证供应商报价是否合理时
 3. 进行供应商竞争力分析时
 
@@ -31,6 +30,6 @@ version: 1.0.0
 - 将抓取结果与 ERP 中的采购价进行对比
 
 ## 注意事项
-- URL可能随时间变化，需定期验证
+- 表内供应商和 example.com 地址均为虚构占位数据，不代表真实企业或可访问报价源；接入真实报价前需替换并核验
 - 部分报价系统需要登录，仅抓取公开页面
 - 价格数据仅供参考，实际以合同价为准

@@ -12,24 +12,24 @@ from fastapi import FastAPI, Request
 app = FastAPI(title="Local demo ERP API", version="0.1.0")
 
 suppliers: list[dict[str, Any]] = [
-    {"id": 1, "supplierCode": "SUP-001", "name": "博世（中国）", "contactPerson": "张经理", "creditRating": "A", "status": 1, "onTimeRate": 0.96, "supplyCapacity": "高"},
-    {"id": 2, "supplierCode": "SUP-002", "name": "电装（中国）", "contactPerson": "李经理", "creditRating": "A", "status": 1, "onTimeRate": 0.93, "supplyCapacity": "高"},
-    {"id": 3, "supplierCode": "SUP-003", "name": "本地零件供应商", "contactPerson": "王经理", "creditRating": "B", "status": 1, "onTimeRate": 0.82, "supplyCapacity": "中"},
+    {"id": 1, "supplierCode": "SUP-001", "name": "启衡运动控制（示例）", "contactPerson": "周经理", "creditRating": "A", "status": 1, "onTimeRate": 0.96, "supplyCapacity": "高"},
+    {"id": 2, "supplierCode": "SUP-002", "name": "灵瞳传感技术（示例）", "contactPerson": "陈经理", "creditRating": "A", "status": 1, "onTimeRate": 0.93, "supplyCapacity": "高"},
+    {"id": 3, "supplierCode": "SUP-003", "name": "云枢边缘计算（示例）", "contactPerson": "林经理", "creditRating": "B", "status": 1, "onTimeRate": 0.82, "supplyCapacity": "中"},
 ]
 parts: list[dict[str, Any]] = [
-    {"id": 1, "partCode": "SP-100", "name": "火花塞", "model": "CR8E", "unit": "个", "purchasePrice": 28.0, "suggestedRetailPrice": 45.0, "stockWarningValue": 50, "supplierId": 1, "category": "发动机系统"},
-    {"id": 2, "partCode": "BR-210", "name": "前刹车片", "model": "BP-21", "unit": "套", "purchasePrice": 76.0, "suggestedRetailPrice": 128.0, "stockWarningValue": 20, "supplierId": 2, "category": "制动系统"},
-    {"id": 3, "partCode": "FL-330", "name": "机油滤芯", "model": "OF-33", "unit": "个", "purchasePrice": 16.5, "suggestedRetailPrice": 29.0, "stockWarningValue": 30, "supplierId": 3, "category": "发动机系统"},
+    {"id": 1, "partCode": "ACT-100", "name": "关节执行器模组", "model": "JX-10", "unit": "套", "purchasePrice": 4200.0, "suggestedRetailPrice": 5200.0, "stockWarningValue": 6, "supplierId": 1, "category": "运动控制", "description": "机器人原型验证用关节执行器模组（示例数据）"},
+    {"id": 2, "partCode": "PER-210", "name": "深度相机与3D激光雷达套件", "model": "DP-L3", "unit": "套", "purchasePrice": 6800.0, "suggestedRetailPrice": 8200.0, "stockWarningValue": 3, "supplierId": 2, "category": "环境感知", "description": "机器人环境感知原型验证套件（示例数据）"},
+    {"id": 3, "partCode": "COM-330", "name": "边缘计算模块", "model": "EC-8", "unit": "台", "purchasePrice": 9800.0, "suggestedRetailPrice": 11800.0, "stockWarningValue": 2, "supplierId": 3, "category": "边缘计算", "description": "机器人本体控制与推理验证设备（示例数据）"},
 ]
 inventory: list[dict[str, Any]] = [
-    {"id": 1, "partId": 1, "currentQuantity": 18, "safetyStock": 50, "warehouseLocation": "A-01", "partDetail": parts[0]},
-    {"id": 2, "partId": 2, "currentQuantity": 42, "safetyStock": 20, "warehouseLocation": "B-03", "partDetail": parts[1]},
-    {"id": 3, "partId": 3, "currentQuantity": 12, "safetyStock": 30, "warehouseLocation": "A-04", "partDetail": parts[2]},
+    {"id": 1, "partId": 1, "currentQuantity": 2, "safetyStock": 6, "warehouseLocation": "研发样机库-A01", "partDetail": parts[0]},
+    {"id": 2, "partId": 2, "currentQuantity": 5, "safetyStock": 3, "warehouseLocation": "感知实验室-B03", "partDetail": parts[1]},
+    {"id": 3, "partId": 3, "currentQuantity": 1, "safetyStock": 2, "warehouseLocation": "边缘计算实验室-C02", "partDetail": parts[2]},
 ]
 orders: list[dict[str, Any]] = [
-    {"id": 1, "orderNumber": "PO-2026-001", "totalAmount": 2800.0, "status": 3, "orderTime": "2026-09-10", "orderDetail": [{"partId": 1, "partName": "火花塞", "quantity": 100, "unitPrice": 28.0, "supplierName": "博世（中国）"}]},
-    {"id": 2, "orderNumber": "PO-2026-002", "totalAmount": 1520.0, "status": 0, "orderTime": "2026-09-18", "orderDetail": [{"partId": 2, "partName": "前刹车片", "quantity": 20, "unitPrice": 76.0, "supplierName": "电装（中国）"}]},
-    {"id": 3, "orderNumber": "PO-2026-003", "totalAmount": 825.0, "status": 4, "orderTime": "2026-09-22", "orderDetail": [{"partId": 3, "partName": "机油滤芯", "quantity": 50, "unitPrice": 16.5, "supplierName": "本地零件供应商"}]},
+    {"id": 1, "orderNumber": "PO-2026-001", "totalAmount": 25200.0, "status": 3, "orderTime": "2026-09-10", "orderDetail": [{"partId": 1, "partName": "关节执行器模组", "quantity": 6, "unitPrice": 4200.0, "supplierName": "启衡运动控制（示例）"}]},
+    {"id": 2, "orderNumber": "PO-2026-002", "totalAmount": 27200.0, "status": 0, "orderTime": "2026-09-18", "orderDetail": [{"partId": 2, "partName": "深度相机与3D激光雷达套件", "quantity": 4, "unitPrice": 6800.0, "supplierName": "灵瞳传感技术（示例）"}]},
+    {"id": 3, "orderNumber": "PO-2026-003", "totalAmount": 19600.0, "status": 4, "orderTime": "2026-09-22", "orderDetail": [{"partId": 3, "partName": "边缘计算模块", "quantity": 2, "unitPrice": 9800.0, "supplierName": "云枢边缘计算（示例）"}]},
 ]
 
 

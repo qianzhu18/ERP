@@ -56,14 +56,14 @@ rubrics:
   order: |
     1. 提取了完整的订单字段（orderNumber、orderDetail、数量、单价）
     2. 缺失字段时通过 request_order_info 向用户询问，未擅自假设
-    3. 数据校验通过：quantity >= 1，unitPrice > 0，partId 有效
+    3. 数据校验通过：quantity >= 1，unitPrice > 0，物料/设备 ID（partId）有效
     4. 创建/修改前向用户展示了完整订单摘要
     5. 写操作已触发人工审批中断，未绕过审批
 
   inventory: |
     1. 使用库存工具获取了真实库存数据
     2. 如任务涉及预警，准确识别低于安全库存的预警项
-    3. 如涉及入库/出库，检查 partId、数量及审批信息
+    3. 如涉及入库/出库，检查物料/设备 ID（partId）、数量及审批信息
     4. 仅在用户要求时输出补货建议
 
   supplier: |

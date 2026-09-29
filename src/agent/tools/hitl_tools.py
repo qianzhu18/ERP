@@ -19,7 +19,7 @@ ORDER_REQUIRED_FIELDS = ["orderNumber", "orderDetail"]
 
 # 定义订单明细必填字段列表
 # 每个订单明细项必须包含以下三个字段
-# partId: 商品/零件ID（标识具体商品）
+# partId: ERP 物料/设备 ID（字段名沿用既有接口）
 # quantity: 订购数量（必须是正数）
 # unitPrice: 商品单价（必须是正数）
 ORDER_DETAIL_REQUIRED_FIELDS = ["partId", "quantity", "unitPrice"]
@@ -48,7 +48,7 @@ def parse_supplement_text(text: str, current_data: dict) -> dict:
     支持两种格式：
     1. JSON 格式：直接解析合并
     2. 自由文本：用正则提取关键字段
-       例如 "零件ID=5 数量100 单价25.5" → {"orderDetail": [{"partId": 5, ...}]}
+       例如 "设备ID=5 数量2 单价4200" → {"orderDetail": [{"partId": 5, ...}]}
     """
     
     # ============ 第1步：复制当前数据（避免修改原始数据） ============
@@ -82,12 +82,13 @@ def parse_supplement_text(text: str, current_data: dict) -> dict:
     # ============ 第3步：自由文本正则解析 ============
     # 如果 JSON 解析失败，尝试从自然语言中提取关键信息
     
-    # ----- 3.1 提取 partId（物料/零件 ID） -----
-    # 正则表达式: r'(?:partId|物料\s*ID|零件\s*ID)[=:\s]*(\d+)'
+    # ----- 3.1 提取 partId（物料/设备 ID） -----
+    # 正则表达式: r'(?:partId|物料\s*ID|设备\s*ID|零件\s*ID)[=:\s]*(\d+)'
     # 解释:
-    #   (?:partId|物料\s*ID|零件\s*ID)  - 匹配关键词（不捕获分组）
+    #   (?:partId|物料\s*ID|设备\s*ID|零件\s*ID)  - 匹配关键词（不捕获分组）
     #     - partId: 英文字段名
     #     - 物料\s*ID: 中文"物料ID"或"物料 ID"
+    #     - 设备\s*ID: 中文"设备ID"或"设备 ID"
     #     - 零件\s*ID: 中文"零件ID"或"零件 ID"
     #   [=:\s]*  - 匹配分隔符：等号、冒号或空格（0个或多个）
     #   (\d+)    - 捕获组：匹配1个或多个数字（零件ID的值）
@@ -95,8 +96,8 @@ def parse_supplement_text(text: str, current_data: dict) -> dict:
     # 匹配示例:
     #   "partId=123"      → 匹配 "123"
     #   "物料ID: 456"     → 匹配 "456"
-    #   "零件 ID 789"     → 匹配 "789"
-    part_id_match = re.search(r'(?:partId|物料\s*ID|零件\s*ID)[=:\s]*(\d+)', text, re.IGNORECASE)
+    #   "设备 ID 789"     → 匹配 "789"
+    part_id_match = re.search(r'(?:partId|物料\s*ID|设备\s*ID|零件\s*ID)[=:\s]*(\d+)', text, re.IGNORECASE)
     
     if part_id_match:
         # 如果匹配到 partId，将其添加到订单明细中

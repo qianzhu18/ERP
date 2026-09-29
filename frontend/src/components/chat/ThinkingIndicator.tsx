@@ -21,9 +21,9 @@ export default function ThinkingIndicator({ visible }: Props) {
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600 font-medium">正在深度思考</span>
           <span className="thinking-dots flex gap-0.5">
-            <span className="w-1 h-1 bg-blue-500 rounded-full animate-bounce [animation-delay:0ms]" />
-            <span className="w-1 h-1 bg-blue-500 rounded-full animate-bounce [animation-delay:150ms]" />
-            <span className="w-1 h-1 bg-blue-500 rounded-full animate-bounce [animation-delay:300ms]" />
+            <span className="h-1 w-1 rounded-full bg-blue-500 animate-pulse [animation-delay:0ms]" />
+            <span className="h-1 w-1 rounded-full bg-blue-500 animate-pulse [animation-delay:150ms]" />
+            <span className="h-1 w-1 rounded-full bg-blue-500 animate-pulse [animation-delay:300ms]" />
           </span>
         </div>
         <span className="text-xs text-gray-400">分析意图 · 规划步骤 · 调用工具</span>

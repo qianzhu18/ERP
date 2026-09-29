@@ -24,7 +24,7 @@ def register_order_tools(mcp: FastMCP):
                     "remark": "备注",
                     "orderDetail": [                 // 订单明细列表
                         {
-                            "partId": 1,            // 必填，零部件ID
+                            "partId": 1,            // 必填，ERP 物料/设备ID（沿用接口字段名）
                             "quantity": 100,        // 必填，数量>=1
                             "unitPrice": 25.5,      // 必填，单价
                             "remark": "明细备注"
@@ -112,15 +112,15 @@ def register_order_tools(mcp: FastMCP):
         start_date: str = None,
         end_date: str = None,
     ) -> str:
-        """搜索订单明细，支持按零部件名称和时间范围过滤。
+        """搜索订单明细，支持按研发物料/设备名称和时间范围过滤。
 
         Args:
-            part_name: 零部件名称（可选，模糊匹配）
+            part_name: 研发物料/设备名称（可选，模糊匹配）
             start_date: 开始时间（可选），支持 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss
             end_date: 结束时间（可选），支持 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss
 
         Returns:
-            订单明细列表JSON，每条包含零部件信息和供应商信息
+            订单明细列表JSON，每条包含物料/设备信息和供应商信息
         """
         params = {
             "partName": part_name,

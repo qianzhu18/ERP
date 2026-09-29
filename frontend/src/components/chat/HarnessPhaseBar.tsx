@@ -40,7 +40,7 @@ export default function HarnessPhaseBar({ phase, phaseLabel, visible }: Props) {
               {/* 阶段节点 */}
               <div className="flex flex-col items-center gap-0.5">
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    className={`flex h-7 w-7 items-center justify-center rounded-full transition-[background-color,color,transform,box-shadow] duration-300 ${
                     isCurrent
                       ? "bg-blue-500 text-white shadow-md shadow-blue-200 scale-110"
                       : isPast

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ChatArea from "@/components/chat/ChatArea";
 import { useChat } from "@/hooks/useChat";
@@ -12,6 +12,7 @@ export default function Home() {
   const chat = useChat();
   const history = useHistory();
   const wasStreaming = useRef(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // 聊天结束后自动刷新历史列表
   useEffect(() => {
@@ -40,6 +41,8 @@ export default function Home() {
         chat.loadThread(threadId, msgs);
       } catch {
         // 加载失败静默处理
+      } finally {
+        setMobileSidebarOpen(false);
       }
     },
     [chat]
@@ -54,6 +57,11 @@ export default function Home() {
     },
     [history, chat]
   );
+
+  const handleNewChat = useCallback(() => {
+    chat.newChat();
+    setMobileSidebarOpen(false);
+  }, [chat]);
 
   const handleSupplement = useCallback(
     (text: string) => {
@@ -71,15 +79,25 @@ export default function Home() {
   }, [chat]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="app-shell relative flex">
+      {mobileSidebarOpen && (
+        <button
+          type="button"
+          aria-label="关闭导航"
+          onClick={() => setMobileSidebarOpen(false)}
+          className="fixed inset-0 z-[90] bg-gray-900/30 md:hidden"
+        />
+      )}
       <Sidebar
         conversations={history.conversations}
         activeThreadId={chat.threadId}
         searchQuery={history.searchQuery}
         onSearchChange={history.setSearchQuery}
-        onNewChat={chat.newChat}
+        onNewChat={handleNewChat}
         onSelectThread={handleSelectThread}
         onDeleteThread={handleDeleteThread}
+        mobileOpen={mobileSidebarOpen}
+        onClose={() => setMobileSidebarOpen(false)}
       />
       <ChatArea
         messages={chat.messages}
@@ -96,6 +114,7 @@ export default function Home() {
         onSupplement={handleSupplement}
         onApprove={handleApprove}
         onReject={handleReject}
+        onOpenSidebar={() => setMobileSidebarOpen(true)}
       />
     </div>
   );

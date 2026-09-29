@@ -48,7 +48,7 @@ class HybridReviewTests(unittest.TestCase):
     def test_clear_rules_and_mixed_definition(self):
         p = ReviewPolicy(self.config)
         self.assertEqual(p.start(self.state("你好"))["review_decision"]["decision"], "skip")
-        self.assertTrue(p.start(self.state("什么是库存，请查询缺货零件"))["rubric"])
+        self.assertTrue(p.start(self.state("什么是库存，请查询缺货设备"))["rubric"])
         self.assertTrue(p.start(self.state("请复核这份结果"))["rubric"])
 
     def test_followup_context_and_model_once(self):
