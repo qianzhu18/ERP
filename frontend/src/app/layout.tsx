@@ -8,6 +8,10 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 export const metadata: Metadata = {
   title: "采购工作台 · 智能采购助手",
   description: "集中处理供应商分析、采购订单与库存查询。",
+  icons: {
+    icon: [{ url: "/procurement-mark.png", type: "image/png" }],
+    apple: [{ url: "/procurement-mark.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

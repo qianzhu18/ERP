@@ -1,12 +1,20 @@
 "use client";
 
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export default function Logo({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex items-center gap-3 px-4 py-4">
-      <div className="flex h-9 w-9 items-center justify-center rounded-[13px] bg-primary text-white shadow-sm">
-        <span className="text-sm font-semibold">采</span>
+      <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-[14px] border border-blue-100 bg-[#f1f7ff] shadow-sm">
+        <Image
+          src="/procurement-mark.png"
+          alt=""
+          width={40}
+          height={40}
+          priority
+          className="block object-contain"
+        />
       </div>
       <div className="flex flex-col">
         <span className="text-sm font-semibold tracking-[-0.02em] text-gray-900">智能采购助手</span>
